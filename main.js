@@ -60,6 +60,7 @@ counter.className = 'general-text-formatting';
 countdownDiv.append(counter);
 
 function startTimer(duration, display, tabID) {
+  console.log("Starting timer");
   var start = Date.now(),
           diff,
           minutes,
@@ -96,11 +97,13 @@ function getTabID(callback, time, counter) {
     active: true,
     currentWindow: true
   };
+  console.log("Getting ID");
 
   chrome.tabs.query(queryInfo, (tabs) => {
-    var tab = tabs[0];
+    var tabID = tabs[0].id;
+    console.log(tabID);
 
-    callback(tabID, time, counter);
+    callback(time, counter, tabID);
   });
 }
 
@@ -108,7 +111,7 @@ timerGo.addEventListener('click', function() {
   var tempTime = timerInput.value;
   if (isNaN(tempTime)) {
     timerInput.value = "";
-    timerInput.placeholder = "Type a number";
+    timerInput.placeholder = "Please type a number";
   } else {
     countdownDiv.className = 'div-formatting active-container';
     timerDiv.className = 'div-formatting hidden-container';
