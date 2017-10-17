@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Tab Timer",
+  "description": "This extension allows the user to set a timer that automatically closes the tab.",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "Vintage-Clock.png",
+    "default_popup": "popup.html",
+    "default_title": "Time Your Tab!"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ]
+}
