@@ -10,6 +10,9 @@
     "default_popup": "popup.html",
     "default_title": "Time Your Tab!"
   },
+  "background": {
+    "scripts": ["background.js"]
+  },
   "permissions": [
     "activeTab",
     "tabs",
