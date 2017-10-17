@@ -1,14 +1,14 @@
 var timerObjects = [];
 
-// while (timerObjects.length > 0) {
-//   for (var j = 0; j < timerObjects.length; j++) {
-//     if (timerObjects[j].diff() <= 0) {
-//       var timer = timerObjects[j];
-//       chrome.tabs.remove(timer.tabID);
-//       deleteTimer(timer.index);
-//     }
-//   }
-// }
+while (timerObjects.length > 0) {
+  for (var j = 0; j < timerObjects.length; j++) {
+    if (timerObjects[j].diff() <= 0) {
+      var timer = timerObjects[j];
+      chrome.tabs.remove(timer.tabID);
+      deleteTimer(timer.index);
+    }
+  }
+}
 
 function Timer(tabID, duration, startDate) {
   this.tabID = tabID;
