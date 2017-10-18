@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Tab Timer",
+  "name": "Death to the Tab",
   "description": "This extension allows the user to set a timer that automatically closes the tab.",
   "version": "1.0",
 
