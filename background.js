@@ -17,6 +17,7 @@ function createTimer(tabID, duration, startDate) {
   alarm.delayInMinutes = duration;
   chrome.alarms.create(""+timer.index, alarm);
   chrome.alarms.onAlarm.addListener(function(alarm) {
+    console.log("Alarm Occurred");
     for (var k = 0; k < timerObjects.length; k++) {
       if (timerObjects[k].diff() <= 0) {
         var timer = timerObjects[k];
