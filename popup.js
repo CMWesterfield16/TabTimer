@@ -35,8 +35,7 @@ function startTimer(startDate, duration, display, tabID, tabIndex) {
       diff = duration - (((Date.now() - start) / 1000) | 0);
       if (diff === 0) {
         clearInterval(intervalVar);
-        chrome.tabs.remove(tabID);
-        background.deleteTimer(tabIndex);
+        background.deleteTab(tabID, tabIndex);
       }
       // does the same job as parseInt truncates the float
       minutes = (diff / 60) | 0;
@@ -148,3 +147,15 @@ function load(exists, tabID) {
     continuedCountdown(exists);
   }
 }
+
+  // chrome.alarms.onAlarm.addListener(function(alarm) {
+  //   console.log("Alarm Occurred");
+  //   var timerObj = background.timerObjects;
+  //   for (var k = 0; k < timerObj.length; k++) {
+  //     if (timerObj[k].diff() <= 0) {
+  //       var timer = timerObj[k];
+  //       chrome.tabs.remove(timer.tabID);
+  //       deleteTimer(k);
+  //     }
+  //   }
+  // });

@@ -5,6 +5,11 @@ function Timer(tabID, duration, startDate) {
   this.duration = duration;
   this.startDate = startDate;
   this.diff = function() {
+    // var difference = duration - (((Date.now() - startDate) / 1000) | 0);
+    // if (difference <= 0) {
+    //   chrome.tabs.remove(tabID);
+    //   deleteTimer(timerIndex);
+    // }
     return duration - (((Date.now() - startDate) / 1000) | 0);
   }
 }
@@ -13,19 +18,15 @@ function createTimer(tabID, duration, startDate) {
   var timer = new Timer(tabID, duration, startDate);
   timer.index = timerObjects.length;
   timerObjects.push(timer);
-  var alarm = new Object();
-  alarm.delayInMinutes = duration;
-  chrome.alarms.create(""+timer.index, alarm);
-  chrome.alarms.onAlarm.addListener(function(alarm) {
-    console.log("Alarm Occurred");
-    for (var k = 0; k < timerObjects.length; k++) {
-      if (timerObjects[k].diff() <= 0) {
-        var timer = timerObjects[k];
-        chrome.tabs.remove(timer.tabID);
-        deleteTimer(k);
-      }
-    }
-  });
+
+  setTimeout(function() {
+    deleteTab(tabID, timer.index);
+  }, timer.duration * 1000);
+
+  // var intervalVar = setInterval(timer.diff(), timer.duration);
+  // var alarm = new Object();
+  // alarm.delayInMinutes = duration;
+  // chrome.alarms.create(""+timer.index, alarm);
 }
 
 function deleteTimer(timerIndex) {
@@ -53,4 +54,9 @@ function getTimer(tabIndex) {
 
 function mostRecentIndex() {
   return timerObjects.length - 1;
+}
+
+function deleteTab(tabID, tabIndex) {
+  chrome.tabs.remove(tabID);
+  deleteTimer(tabIndex);
 }
