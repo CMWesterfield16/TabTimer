@@ -147,15 +147,3 @@ function load(exists, tabID) {
     continuedCountdown(exists);
   }
 }
-
-  // chrome.alarms.onAlarm.addListener(function(alarm) {
-  //   console.log("Alarm Occurred");
-  //   var timerObj = background.timerObjects;
-  //   for (var k = 0; k < timerObj.length; k++) {
-  //     if (timerObj[k].diff() <= 0) {
-  //       var timer = timerObj[k];
-  //       chrome.tabs.remove(timer.tabID);
-  //       deleteTimer(k);
-  //     }
-  //   }
-  // });

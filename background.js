@@ -5,11 +5,6 @@ function Timer(tabID, duration, startDate) {
   this.duration = duration;
   this.startDate = startDate;
   this.diff = function() {
-    // var difference = duration - (((Date.now() - startDate) / 1000) | 0);
-    // if (difference <= 0) {
-    //   chrome.tabs.remove(tabID);
-    //   deleteTimer(timerIndex);
-    // }
     return duration - (((Date.now() - startDate) / 1000) | 0);
   }
 }
@@ -22,11 +17,6 @@ function createTimer(tabID, duration, startDate) {
   setTimeout(function() {
     deleteTab(tabID, timer.index);
   }, timer.duration * 1000);
-
-  // var intervalVar = setInterval(timer.diff(), timer.duration);
-  // var alarm = new Object();
-  // alarm.delayInMinutes = duration;
-  // chrome.alarms.create(""+timer.index, alarm);
 }
 
 function deleteTimer(timerIndex) {
