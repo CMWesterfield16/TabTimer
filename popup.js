@@ -116,23 +116,6 @@ function load(exists, tabID) {
   counter.id = 'counter';
   counter.className = 'general-text-formatting';
   countdownDiv.append(counter);
-  //
-  // function getTabID(callback, duration, counter) {
-  //   var queryInfo = {
-  //     active: true,
-  //     currentWindow: true
-  //   };
-  //   console.log("Getting ID");
-  //
-  //   chrome.tabs.query(queryInfo, (tabs) => {
-  //     var tabID = tabs[0].id;
-  //     console.log(tabID);
-  //     var nowDate = Date.now();
-  //     background.createTimer(tabID, duration, nowDate);
-  //     var tabIndex = background.mostRecentIndex();
-  //     callback(nowDate, duration, counter, tabID, tabIndex);
-  //   });
-  // }
 
   timerGo.addEventListener('click', function() {
     var tempTime = timerInput.value;

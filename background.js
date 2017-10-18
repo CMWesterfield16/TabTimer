@@ -1,15 +1,5 @@
 var timerObjects = [];
 
-while (timerObjects.length > 0) {
-  for (var j = 0; j < timerObjects.length; j++) {
-    if (timerObjects[j].diff() <= 0) {
-      var timer = timerObjects[j];
-      chrome.tabs.remove(timer.tabID);
-      deleteTimer(timer.index);
-    }
-  }
-}
-
 function Timer(tabID, duration, startDate) {
   this.tabID = tabID;
   this.duration = duration;
@@ -23,6 +13,18 @@ function createTimer(tabID, duration, startDate) {
   var timer = new Timer(tabID, duration, startDate);
   timer.index = timerObjects.length;
   timerObjects.push(timer);
+  var alarm = new Object();
+  alarm.delayInMinutes = duration;
+  chrome.alarms.create(""+timer.index, alarm);
+  chrome.alarms.onAlarm.addListener(function(alarm) {
+    for (var k = 0; k < timerObjects.length; k++) {
+      if (timerObjects[k].diff() <= 0) {
+        var timer = timerObjects[k];
+        chrome.tabs.remove(timer.tabID);
+        deleteTimer(k);
+      }
+    }
+  });
 }
 
 function deleteTimer(timerIndex) {
